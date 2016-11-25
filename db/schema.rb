@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125012550) do
+ActiveRecord::Schema.define(version: 20161125012818) do
+
+  create_table "book_tags", force: :cascade do |t|
+    t.integer "book_id", limit: 4
+    t.integer "tag_id",  limit: 4
+    t.string  "weight",  limit: 255
+  end
 
   create_table "books", force: :cascade do |t|
     t.string  "name",          limit: 255
