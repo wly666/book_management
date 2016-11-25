@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>图书分类列表</h1>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>图书分类名称</th>
+      <th>操作</th>
+    </tr>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+	<td>
+          <%= link_to "修改", edit_category_path(:id=>category.id), :class=>"btn btn-primary" %>
+	  <%= link_to "删除", category_path(:id=>category.id), :class=>"btn btn-danger", :method=>"delete", :data=>{:confirm=>"确定要删除这个分类吗？"} %>
+	</td>
+      </tr>
+    <%end%>
+  </table>
+  <%= link_to "新增", new_category_path, :class=>"btn btn-primary" %>
+</div>
+
