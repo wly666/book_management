@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125011539) do
+ActiveRecord::Schema.define(version: 20161125012254) do
 
   create_table "books", force: :cascade do |t|
     t.string  "name",          limit: 255
@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(version: 20161125011539) do
     t.string  "book_position", limit: 255
     t.integer "amount",        limit: 4
     t.integer "category_id",   limit: 4
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", limit: 255
   end
 
 end
