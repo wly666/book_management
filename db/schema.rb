@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125013345) do
+ActiveRecord::Schema.define(version: 20161125013656) do
 
   create_table "book_tags", force: :cascade do |t|
     t.integer "book_id", limit: 4
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20161125013345) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", limit: 255
+  end
+
+  create_table "circulates", force: :cascade do |t|
+    t.integer  "book_id",          limit: 4
+    t.integer  "user_id",          limit: 4
+    t.datetime "borrow_date"
+    t.datetime "expect_back_date"
+    t.datetime "back_date"
+    t.integer  "book_status_id",   limit: 4
+    t.integer  "status_id",        limit: 4
   end
 
   create_table "tags", force: :cascade do |t|
