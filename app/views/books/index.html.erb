@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>图书列表</h1>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>图书名称</th>
+      <th>图书作者</th>
+      <th>是否可借阅</th>
+      <th>图书位置</th>
+      <th>图书分类</th>
+      <th>图书标签</th>
+      <th>操作</th>
+    </tr>
+    <% @books.each do |book| %>
+      <tr>
+      <td><%= book.name %></td>
+      <td><%= book.author%></td>
+      <%if book.status_id==0 %>
+      <td>不可借</td>
+      <%else%>
+      <td>可借</td>
+      <%end%>
+      <td><%= book.book_position %></td>
+      <td><%= book.category.name %></td>
+      <td>
+        <% book.tags.each do |tag| %>
+        <%= tag.name%>
+        <%end%>
+      </td>
+      <td>
+        <%= link_to "修改", edit_book_path(:id=>book.id), :class=>"btn btn-primary" %>
+	<%= link_to "删除", book_path(:id=>book.id), :method=>"delete", :data=>{:confirm=>"确认要删除吗？"}, :class=>"btn btn-danger" %>
+      </td>
+      </tr>
+    <%end%>
+  </table>
+  <%= link_to "新增", new_book_path, :class=>"btn btn-primary" %>
+</div>

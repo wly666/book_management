@@ -1,0 +1,50 @@
+<%= form_for @book, :html=>{:id=>"form"} do |f| %>
+  <div class="input-group">
+    <span class="input-group-addon">图书名称</span>
+    <%= f.text_field :name, :class=>"form-control", :style=>"width:40%" %>
+  </div>
+  <br/>
+  <div class="input-group">
+    <span class="input-group-addon">图书作者</span>
+    <%= f.text_field :author, :class=>"form-control", :style=>"width:40%" %>
+  </div>
+  <br/>
+  <div class="input-group">
+    <span class="input-group-addon">图书简介</span>
+    <%= f.text_area :summary, :size=>"60*12" %>
+  </div>
+  <br/>
+  <div class="input-group">
+    <span class="input-group-addon">图书分类</span>
+    <%= select_tag "category_id", options_from_collection_for_select(Category.all,'id','name', @book.category_id)%>
+  </div>
+  <br>
+  <div class="input-group">
+    <span class="input-group-addon">图书标签</span>
+    <% Tag.all.each do |tag|%>
+    <%= check_box_tag :tag %>
+    <%= label_tag tag.name %> 
+    <%end%>
+  </div>
+  <br/>
+  <div class="input-group">
+    <span class="input-group-addon">图书是否可外借</span>
+    <%= radio_button_tag :status_id, "0" %>
+    <%= label_tag "不可借"%>
+    <%= radio_button_tag :status_id, "1" %>
+    <%= label_tag "可借" %>
+  </div>
+  <br/>
+  <div class="input-group">
+    <span class="input-group-addon">图书总量</span>
+    <%= f.text_field :amount, :class=>"form-control", :style=>"width:40%" %>
+  </div>
+  <br/>
+  <div class="input-group">
+    <span class="input-group-addon">图书位置</span>
+    <%= f.text_field :book_position, :class=>"form-control", :style=>"width:40%" %>
+  </div>
+  <br/>
+  <%= f.submit "确定", :class=>"btn btn-primary" %>
+  <%= link_to "返回", books_path, :class=>"btn btn-primary" %>
+<%end%>
