@@ -4,6 +4,10 @@ class BooksController <ApplicationController
 
   def index
     @books = Book.all
+    @books = @books.where("name like '%#{params[:book_name]}%'") if params[:book_name].present?
+    @books = @books.where("author like '%#{params[:book_author]}%'") if params[:book_author].present?
+    @books = @books.joins(:category).where("categories.name like ? ", "%#{params[:book_category]}%") if params[:book_category].present?
+    @books = @books.joins(:tags).where("tags.name like ? ", "%#{params[:book_tag]}%") if params[:book_tag].present?
   end
 
   def new
