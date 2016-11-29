@@ -8,3 +8,5 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 
 gem 'bootstrap-sass', '~> 3.3.5'
+
+gem 'bcrypt', '~> 3.1.7'
