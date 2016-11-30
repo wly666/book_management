@@ -1,0 +1,17 @@
+<style>
+  .block{
+    float:left;
+    background-color:#0696CE;
+    width:35%;
+    line-height:450%;
+    margin-top: 8%;
+    margin-right: 15%;
+    font-size: 3em;
+  }
+</style>
+<div class="container" align="center">
+  <div class="block"><%= link_to "图书分类管理", categories_path, :style=>"text-decoration:none; color:black" %></div>
+  <div class="block"><%= link_to "图书标签管理", tags_path, :style=>"text-decoration:none; color:black" %></div>
+  <div class="block"><%= link_to "图书管理", books_path, :style=>"text-decoration:none; color:black" %></div>
+  <div class="block"><%= link_to "图书流通状态管理", circulates_path, :style=>"text-decoration:none; color:black" %></div>
+</div>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :circulates
   resources :tags
   resources :sessions
+  resources :mains
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
