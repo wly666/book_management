@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
-  resources :books
+  resources :books do
+    collection do
+      get :success
+    end
+  end
   resources :users
   resources :categories
   resources :circulates
