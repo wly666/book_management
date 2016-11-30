@@ -8,22 +8,6 @@
 </head>
 <body>
 
-  <div class="container">
-    <div id="user_header">
-      <% if current_user %>
-        欢迎<%= current_user.name %>登陆！
-        <%= link_to "退出", logout_path %>
-      <% else %>
-        <%= link_to "注册", signup_path, :class=>"btn btn-primary" %> 
-        <%= link_to "登陆", login_path, :class=>"btn btn-primary" %>
-      <% end %>
-    </div>
-
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, id: "flash_#{name}" %>
-    <% end %>
-  </div>
-
 <%= yield %>
 
 </body>
