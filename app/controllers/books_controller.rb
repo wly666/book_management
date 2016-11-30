@@ -1,6 +1,6 @@
 class BooksController <ApplicationController
   
-  before_action :find_book_by_id, :only=>[:edit, :update, :destroy]
+  before_action :find_book_by_id, :only=>[:edit, :update, :destroy, :show]
 
   def index
     @books = Book.all
@@ -37,6 +37,10 @@ class BooksController <ApplicationController
   def destroy
     @book.delete
     redirect_to books_path
+  end
+
+  def show 
+    @count = Circulate.joins(:book).where("books.id=?", "#{params[:id]}").where("circulates.status_id=?", "1").count
   end
 
   def find_book_by_id

@@ -1,0 +1,37 @@
+<style>
+  div{
+    font-size:1em;
+    margin-left:5%;
+  }
+</style>
+
+<div class="container">
+  <h1>图书详情展示页</h1>
+  <div>图书名称：<%= @book.name %></div><br/>
+  <div>图书作者：<%= @book.author %></div><br/>
+  <div>图书分类：<%= @book.category.name %></div><br/>
+  <div>
+    图书标签：
+    <% @book.tags.each do |tag| %>
+    <%= tag.name%>、
+    <%end%>
+  </div><br/>
+  <div>图书简介：<%= @book.summary %></div><br/>
+  <div>图书位置：<%= @book.book_position %></div><br/>
+  <!--
+  <div>
+    是否可借：
+    <%if @book.status_id==0 %>不可借
+    <%else%>可借
+    <%end%>
+  </div><br/>
+  -->
+  <% if @book.status_id==0 %>
+    <p style="color:red"> 该书目前正在维护中，不可借阅</p>
+  <%elsif @book.amount - @count == 0%>
+    <p style="color:red"> 该书剩余量为0，请稍后再借</p>
+  <%else%>
+    <%= link_to "借阅", new_circulate_path(:book_id=>@book.id), :class=>"btn btn-primary" %>
+  <%end%>
+  <%= link_to "返回", books_path, :class=>"btn btn-primary" %>
+</div>
