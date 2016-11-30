@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<div class="container">
+  <h1>还书</h1>
+  <%= form_for @circulate do |f| %>
+    <div class="input-group">
+      <span class="input-group-addon">还书时间：</span>
+      <%= f.text_field :back_date, :value=>"#{Time.now.to_date}", :class=>"form-control", :style=>"width:20%", :readonly => true %>
+   </div><br/>
+    <div class="input-group">
+      <span class="input-group-addon">书是否完好：</span>
+        <%= radio_button_tag :book_status_id, "0" %>
+        <%= label_tag "损坏"%>
+        <%= radio_button_tag :book_status_id, "1" %>
+        <%= label_tag "完好" %>
+   </div><br/>
+    <%= f.submit "确定", :class=>"btn btn-primary" %>
+  <%end%>
+</div>

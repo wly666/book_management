@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>借还书记录列表</h1>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>图书名称</th>
+      <th>借书人</th>
+      <th>借书时间</th>
+      <th>预期还书时间</th>
+      <th>实际还书时间</th>
+      <th>书是否损坏</th>
+      <th>图书是否已还</th>
+      <th>操作</th>
+    </tr>
+    <% @circulates.each do |circulate| %>
+      <tr>
+        <td><%= circulate.book.name %></td>
+	<td><%= circulate.user.name %></td>
+	<td><%= circulate.borrow_date.to_date %></td>
+	<td><%= circulate.expect_back_date.strftime('%Y-%m-%d') %></td>
+
+	<% if circulate.back_date.present? %>
+	  <td><%= circulate.back_date.to_date %></td>
+	<%else%>
+	  <td><%= circulate.back_date %></td>
+	<%end%>
+
+	<% if circulate.book_status_id == 0 %><td>损坏</td>
+	<%else%><td>完好</td>
+	<%end%>
+
+	<% if circulate.status_id == 0 %><td>已还</td>
+	<%else%><td>在借中</td>
+	<%end%>
+
+	<td>
+          <% if circulate.status_id == 0 %>
+	    流通关闭！
+	  <%else%>
+	    <%=link_to "还书", edit_circulate_path(:id=>circulate.id), :class=>"btn btn-primary" %>
+	  <%end%>
+	</td>
+      </tr>
+    <%end%>
+  </table>
+</div>
