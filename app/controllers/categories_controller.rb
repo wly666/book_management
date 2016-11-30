@@ -1,6 +1,7 @@
 class CategoriesController <ApplicationController
-  
+
   before_action :find_category_by_id, :only=>[:edit, :destroy, :update]
+  before_filter :authorize
 
   def index
     @categories = Category.all

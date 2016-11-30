@@ -1,5 +1,7 @@
 class CirculatesController <ApplicationController
 
+  before_filter :authorize
+
   def index
     @circulates = Circulate.all
   end

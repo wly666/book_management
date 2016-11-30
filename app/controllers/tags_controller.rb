@@ -1,6 +1,7 @@
 class TagsController <ApplicationController
-  
+
   before_action :find_tag_by_id, :only=>[:edit, :update, :destroy]
+  before_filter :authorize
 
   def index
     @tags = Tag.all
