@@ -24,22 +24,14 @@
     <tr>
       <th>图书名称</th>
       <th>图书作者</th>
-      <th>是否可借阅</th>
-      <th>图书位置</th>
       <th>图书分类</th>
       <th>图书标签</th>
       <th>操作</th>
     </tr>
     <% @books.each do |book| %>
       <tr>
-      <td><%= book.name %></td>
+      <td><%= link_to book.name, book_path(:id=>book.id) %></td>
       <td><%= book.author%></td>
-      <%if book.status_id==0 %>
-      <td>不可借</td>
-      <%else%>
-      <td>可借</td>
-      <%end%>
-      <td><%= book.book_position %></td>
       <td><%= book.category.name %></td>
       <td>
         <% book.tags.each do |tag| %>
