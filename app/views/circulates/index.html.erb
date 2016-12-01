@@ -42,5 +42,8 @@
       </tr>
     <%end%>
   </table>
+  <div class="table-actions-bottom" style="float:right">
+    <%= paginate @circulates %>
+  </div>
   <%= link_to "返回首页", mains_path, :class=>"btn btn-primary" %>
 </div>

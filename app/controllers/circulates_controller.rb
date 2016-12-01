@@ -3,7 +3,7 @@ class CirculatesController <ApplicationController
   before_filter :authorize
 
   def index
-    @circulates = Circulate.all
+    @circulates = Circulate.all.page(params[:page]).per(10)
   end
 
   def new

@@ -51,6 +51,9 @@
     </tr>
   <%end%>
   </table>
+  <div class="table-actions-bottom" style="float:right">
+    <%= paginate @books %>
+  </div>
   <% if current_user.role == "admin"%>
     <%= link_to "新增", new_book_path, :class=>"btn btn-primary" %>
     <%= link_to "返回首页", mains_path, :class=>"btn btn-primary" %>

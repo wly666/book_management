@@ -4,7 +4,7 @@ class CategoriesController <ApplicationController
   before_filter :authorize
 
   def index
-    @categories = Category.all
+    @categories = Category.all.page(params[:page]).per(10)
   end
 
   def new
