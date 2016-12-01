@@ -13,10 +13,10 @@
       </div>
       <div style="width:50%; float:left; margin-top:1%">请输入作者姓名：
         <input class="form-control" style="width:50%" type="text" name="book_author" id="book_author" placeholder="模糊匹配全文，例如：小王"/>
-      </div> 
+      </div>
       <div style="float:right; margin-right:10%; margin-top:1% ">
         <input type="submit" value="查询" class="btn btn-primary" />
-      </div> 
+      </div>
     </div>
   </form>
   <br/>
@@ -26,7 +26,10 @@
       <th>图书作者</th>
       <th>图书分类</th>
       <th>图书标签</th>
-      <th>操作</th>
+      <% if current_user.role == "admin"%>
+        <th>操作</th>
+      <%else%>
+      <%end%>
     </tr>
     <% @books.each do |book| %>
       <tr>
@@ -35,16 +38,22 @@
       <td><%= book.category.name %></td>
       <td>
         <% book.tags.each do |tag| %>
-        <%= tag.name%>
+          <%= tag.name%>
         <%end%>
       </td>
-      <td>
-        <%= link_to "修改", edit_book_path(:id=>book.id), :class=>"btn btn-primary" %>
-	<%= link_to "删除", book_path(:id=>book.id), :method=>"delete", :data=>{:confirm=>"确认要删除吗？"}, :class=>"btn btn-danger" %>
-      </td>
-      </tr>
-    <%end%>
+      <% if current_user.role == "admin"%>
+        <td>
+          <%= link_to "修改", edit_book_path(:id=>book.id), :class=>"btn btn-primary" %>
+          <%= link_to "删除", book_path(:id=>book.id), :method=>"delete", :data=>{:confirm=>"确认要删除吗？"}, :class=>"btn btn-danger" %>
+        </td>
+      <%else%>
+      <%end%>
+    </tr>
+  <%end%>
   </table>
-  <%= link_to "新增", new_book_path, :class=>"btn btn-primary" %>
-  <%= link_to "返回首页", mains_path, :class=>"btn btn-primary" %>
+  <% if current_user.role == "admin"%>
+    <%= link_to "新增", new_book_path, :class=>"btn btn-primary" %>
+    <%= link_to "返回首页", mains_path, :class=>"btn btn-primary" %>
+  <%else%>
+  <%end%>
 </div>
