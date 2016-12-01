@@ -12,6 +12,7 @@ class CirculatesController <ApplicationController
 
   def create
     Circulate.create :book_id=>params[:circulate][:book_id],
+      :user_id=>current_user.id,
       :borrow_date=>params[:circulate][:borrow_date],
       :expect_back_date=>params[:circulate][:expect_back_date],
       :book_status_id=>"1",
