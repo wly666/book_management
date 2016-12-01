@@ -1,3 +1,45 @@
+<style>
+input.error{border:1px solid red}
+textarea.error{border:1px solid red}
+label.error {
+  font-weight: bold;
+  color: #EA5200;
+  float: right;
+  margin-right: 46%;
+}
+</style>
+<script>
+$(function(){
+  $("#form").validate({
+    rules:{
+      "book[name]":"required",
+      "book[author]":"required",
+      "book[summary]":"required",
+      "book[tag_ids][]":"required",
+      "book[status_id]":"required",
+      "book[amount]":{
+        "required":true,
+        "digits":true,
+        "min":1
+      },
+      "book[book_position]":"required",
+    },
+    messages:{
+      "book[name]":"图书名称不能为空",
+      "book[author]":"图书作者不能为空",
+      "book[summary]":"图书简介不能为空",
+      "book[tag_ids][]":"图书标签不能为空",
+      "book[status_id]":"图书是否可以外借必填",
+      "book[amount]":{
+         "required":"图书总量不能为空",
+         "digits":"必须输入正整数",
+         "min":"必须大于1"
+      },
+      "book[book_position]":"图书位置不能为空",
+    }
+  });
+});
+</script>
 <%= form_for @book, :html=>{:id=>"form"} do |f| %>
   <div class="input-group">
     <span class="input-group-addon">图书名称</span>
@@ -11,12 +53,12 @@
   <br/>
   <div class="input-group">
     <span class="input-group-addon">图书简介</span>
-    <%= f.text_area :summary, :size=>"60*12" %>
+    <%= f.text_area :summary, :size=>"50*12" %>
   </div>
   <br/>
   <div class="input-group">
     <span class="input-group-addon">图书分类</span>
-    <%= select_tag "category_id", options_from_collection_for_select(Category.all,'id','name', @book.category_id)%>
+    <%= f.select :category_id, options_from_collection_for_select(Category.all,'id','name', @book.category_id)%>
   </div>
   <br>
   <div class="input-group">
@@ -24,26 +66,26 @@
     <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
     <%# Tag.all.each do |tag|%>
       <%#= check_box_tag 'tag_group_id[]', tag.id, @book.bookTags.map(&:tag_id).include?(tag.id) %>
-      <%#= label_tag tag.name %> 
+      <%#= label_tag tag.name %>
     <%#end%>
   </div>
   <br/>
   <div class="input-group">
     <span class="input-group-addon">图书是否可外借</span>
-    <% if @book.status_id == nil %> 
-      <%= radio_button_tag :status_id, "0" %>
+    <% if @book.status_id == nil %>
+      <%= f.radio_button :status_id, "0" %>
       <%= label_tag "不可借"%>
-      <%= radio_button_tag :status_id, "1" %>
+      <%= f.radio_button :status_id, "1" %>
       <%= label_tag "可借" %>
     <%elsif @book.status_id == 0 %>
-      <%= radio_button_tag :status_id, "0", checked:true %>
+      <%= f.radio_button :status_id, "0", checked:true %>
       <%= label_tag "不可借"%>
-      <%= radio_button_tag :status_id, "1" %>
+      <%= f.radio_button :status_id, "1" %>
       <%= label_tag "可借" %>
     <%else%>
-      <%= radio_button_tag :status_id, "0" %>
+      <%= f.radio_button :status_id, "0" %>
       <%= label_tag "不可借"%>
-      <%= radio_button_tag :status_id, "1", checked:true %>
+      <%= f.radio_button :status_id, "1", checked:true %>
       <%= label_tag "可借" %>
     <%end%>
   </div>
