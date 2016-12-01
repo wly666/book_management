@@ -14,3 +14,5 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'cancan'
 
 gem 'kaminari'
+
+gem 'log4r', '1.1.9'

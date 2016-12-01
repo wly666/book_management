@@ -60,6 +60,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     libv8 (3.16.14.17)
+    log4r (1.1.9)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -135,6 +136,7 @@ DEPENDENCIES
   cancan
   jquery-rails
   kaminari
+  log4r (= 1.1.9)
   mysql2 (= 0.3.17)
   rails (= 4.2.1)
   sass-rails (~> 5.0)
