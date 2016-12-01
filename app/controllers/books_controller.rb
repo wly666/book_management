@@ -12,21 +12,24 @@ class BooksController <ApplicationController
   end
 
   def new
-    @book =  Book.new
+    @book = Book.new
   end
 
   def create
-    Book.create :name=>params[:book][:name],
-    :author=>params[:book][:author],
-    :summary=>params[:book][:summary],
-    :category_id=>params[:category_id],
-    :status_id=>params[:status_id],
-    :amount=>params[:book][:amount],
-    :book_position=>params[:book][:book_position]
-    book_id = Book.last.id
-    params[:tag_group_id].each do |tag_id|
-      Book.last.bookTags.create(:tag_id=>tag_id, :book_id=>book_id)
-    end
+    @book = Book.create book_params
+    #  :name=>params[:book][:name],
+    #  :author=>params[:book][:author],
+    #  :summary=>params[:book][:summary],
+    #  :category_id=>params[:category_id],
+    #  :status_id=>params[:status_id],
+    #  :amount=>params[:book][:amount],
+    #  :book_position=>params[:book][:book_position],
+    #  :tag_group_ids => params[:book][:tag_group_ids]
+
+    #book_id = @book.id  
+    #params[:tag_group_id].each do |tag_id|
+    #  @book.bookTags.create(:tag_id=>tag_id, :book_id=>book_id)
+    #end
     redirect_to books_path
   end
 
@@ -34,14 +37,15 @@ class BooksController <ApplicationController
   end
 
   def update
-    @book.name = params[:book][:name]
-    @book.author = params[:book][:author]
-    @book.summary = params[:book][:summary]
-    @book.category_id = params[:category_id]
-    @book.status_id = params[:status_id]
-    @book.amount = params[:book][:amount]
-    @book.book_position = params[:book][:book_position]
-    @book.save
+    @book.update book_params
+    #@book.name = params[:book][:name]
+    #@book.author = params[:book][:author]
+    #@book.summary = params[:book][:summary]
+    #@book.category_id = params[:category_id]
+    #@book.status_id = params[:status_id]
+    #@book.amount = params[:book][:amount]
+    #@book.book_position = params[:book][:book_position]
+    #@book.save
     redirect_to books_path
   end
 
@@ -56,5 +60,10 @@ class BooksController <ApplicationController
 
   def find_book_by_id
     @book = Book.find(params[:id])
+  end
+
+private
+  def book_params
+    params.require(:book).permit! 
   end
 end

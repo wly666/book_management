@@ -21,10 +21,11 @@
   <br>
   <div class="input-group">
     <span class="input-group-addon">图书标签</span>
-      <% Tag.all.each do |tag|%>
-      <%= check_box_tag 'tag_group_id[]', tag.id %>
-      <%= label_tag tag.name %> 
-    <%end%>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+    <%# Tag.all.each do |tag|%>
+      <%#= check_box_tag 'tag_group_id[]', tag.id, @book.bookTags.map(&:tag_id).include?(tag.id) %>
+      <%#= label_tag tag.name %> 
+    <%#end%>
   </div>
   <br/>
   <div class="input-group">
