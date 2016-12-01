@@ -35,6 +35,12 @@ class BooksController <ApplicationController
 
   def update
     @book.name = params[:book][:name]
+    @book.author = params[:book][:author]
+    @book.summary = params[:book][:summary]
+    @book.category_id = params[:category_id]
+    @book.status_id = params[:status_id]
+    @book.amount = params[:book][:amount]
+    @book.book_position = params[:book][:book_position]
     @book.save
     redirect_to books_path
   end

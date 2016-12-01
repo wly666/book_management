@@ -34,7 +34,7 @@
       <%= label_tag "不可借"%>
       <%= radio_button_tag :status_id, "1" %>
       <%= label_tag "可借" %>
-    <%elsif @book.status_id == "0" %>
+    <%elsif @book.status_id == 0 %>
       <%= radio_button_tag :status_id, "0", checked:true %>
       <%= label_tag "不可借"%>
       <%= radio_button_tag :status_id, "1" %>
