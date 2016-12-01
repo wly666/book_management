@@ -21,18 +21,30 @@
   <br>
   <div class="input-group">
     <span class="input-group-addon">图书标签</span>
-    <% Tag.all.each do |tag|%>
-    <%= check_box_tag 'tag_group_id[]', tag.id %>
-    <%= label_tag tag.name %> 
+      <% Tag.all.each do |tag|%>
+      <%= check_box_tag 'tag_group_id[]', tag.id %>
+      <%= label_tag tag.name %> 
     <%end%>
   </div>
   <br/>
   <div class="input-group">
     <span class="input-group-addon">图书是否可外借</span>
-    <%= radio_button_tag :status_id, "0" %>
-    <%= label_tag "不可借"%>
-    <%= radio_button_tag :status_id, "1" %>
-    <%= label_tag "可借" %>
+    <% if @book.status_id == nil %> 
+      <%= radio_button_tag :status_id, "0" %>
+      <%= label_tag "不可借"%>
+      <%= radio_button_tag :status_id, "1" %>
+      <%= label_tag "可借" %>
+    <%elsif @book.status_id == "0" %>
+      <%= radio_button_tag :status_id, "0", checked:true %>
+      <%= label_tag "不可借"%>
+      <%= radio_button_tag :status_id, "1" %>
+      <%= label_tag "可借" %>
+    <%else%>
+      <%= radio_button_tag :status_id, "0" %>
+      <%= label_tag "不可借"%>
+      <%= radio_button_tag :status_id, "1", checked:true %>
+      <%= label_tag "可借" %>
+    <%end%>
   </div>
   <br/>
   <div class="input-group">
