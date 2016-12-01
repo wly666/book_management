@@ -26,7 +26,7 @@ class BooksController <ApplicationController
     #  :book_position=>params[:book][:book_position],
     #  :tag_group_ids => params[:book][:tag_group_ids]
 
-    #book_id = @book.id  
+    #book_id = @book.id
     #params[:tag_group_id].each do |tag_id|
     #  @book.bookTags.create(:tag_id=>tag_id, :book_id=>book_id)
     #end
@@ -64,6 +64,6 @@ class BooksController <ApplicationController
 
 private
   def book_params
-    params.require(:book).permit! 
+    params.require(:book).permit!
   end
 end
