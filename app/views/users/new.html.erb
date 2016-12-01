@@ -1,8 +1,52 @@
+<style>
+  input.error{border:1px solid red}
+  textarea.error{border:1px solid red}
+  label.error {
+    padding-left: 16px;
+    padding-bottom: 2px;
+    font-weight: bold;
+    color: #EA5200;
+}
+</style>
+<script>
+  $(function(){
+    $("#form").validate({
+      rules:{
+        "user[name]":"required",
+        "user[email]":{
+          "required":true,
+          "email":true
+        },
+        "user[phone_number]":{
+          "required":true,
+          "isMobile":true
+        },
+        "user[borrow_card]":"required",
+        "user[password]":"required",
+        "user[password_confirmation]":"required",
+      },
+      messages:{
+        "user[name]":"用户名不能为空",
+        "user[email]":{
+          "requied":"用户邮箱不能为空",
+          "email":"邮箱格式不正确"
+        },
+        "user[phone_number]":{
+          "required":"用户电话号码不能为空",
+          "isMobile":"电话号码的格式不正确"
+        },
+        "user[borrow_card]":"用户借书证不能为空",
+        "user[password]":"密码不能为空",
+        "user[password_confirmation]":"确认密码不能为空",
+      }
+    });
+});
+</script>
 <div class="container">
   <h1>注册</h1>
 
   <%= form_for @user, :html=>{:id=>"form"} do |f| %>
-   
+
     <% if @user.errors.any? %>
       <div class="error_messages">
         <h3>表单校验错误提示</h3>
