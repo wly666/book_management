@@ -26,7 +26,9 @@
     <%end%>
   </div><br/>
   -->
-  <% if @book.status_id==0 %>
+  <% if current_user.role == "admin" %>
+    <p style="color:red">您是管理员</p>
+  <% elsif @book.status_id==0 %>
     <p style="color:red"> 该书目前正在维护中，不可借阅</p>
   <%elsif @book.amount - @count == 0%>
     <p style="color:red"> 该书剩余量为0，请稍后再借</p>
