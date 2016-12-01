@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201081951) do
+ActiveRecord::Schema.define(version: 20161201085311) do
 
   create_table "book_tags", force: :cascade do |t|
     t.integer "book_id", limit: 4
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20161201081951) do
     t.datetime "last_sign_in_at"
     t.integer  "sign_in_count",      limit: 4
     t.string   "password_digest",    limit: 255
+    t.string   "role",               limit: 255
   end
 
 end
