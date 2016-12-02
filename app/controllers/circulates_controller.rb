@@ -34,8 +34,12 @@ class CirculatesController <ApplicationController
   end
 
   def tongji
-    @books = Book.select('books.*, count(circulates.id) as count').joins(:circulates).group(:id)
-    @books = @books.joins(:tags).where("tags.name like ? ", "%#{params[:book_tag]}%") if params[:book_tag].present?
+    if params[:book_tag].present?
+      @books = Book.joins(:tags).where("tags.name like ? ", "%#{params[:book_tag]}%")
+      @books = @books.select('books.*, count(circulates.id) as count').joins(:circulates).group(:id)
+    else
+      @books = Book.select('books.*, count(circulates.id) as count').joins(:circulates).group(:id)
+    end
   end
 
   def usersTongji
