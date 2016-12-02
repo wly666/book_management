@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :categories
-  resources :circulates
+  resources :circulates do
+    collection do
+      get :tongji
+      get :usersTongji
+    end
+  end
   resources :tags
   resources :sessions
   resources :mains

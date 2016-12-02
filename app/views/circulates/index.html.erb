@@ -13,37 +13,38 @@
     </tr>
     <% @circulates.each do |circulate| %>
       <tr>
-        <td><%= circulate.book.name %></td>
-	<td><%= circulate.user.name %></td>
-	<td><%= circulate.borrow_date.to_date %></td>
-	<td><%= circulate.expect_back_date.strftime('%Y-%m-%d') %></td>
+      <td><%= circulate.book.name %></td>
+      <td><%= circulate.user.name %></td>
+      <td><%= circulate.borrow_date.to_date %></td>
+      <td><%= circulate.expect_back_date.strftime('%Y-%m-%d') %></td>
 
-	<% if circulate.back_date.present? %>
-	  <td><%= circulate.back_date.to_date %></td>
-	<%else%>
-	  <td><%= circulate.back_date %></td>
-	<%end%>
+      <% if circulate.back_date.present? %>
+        <td><%= circulate.back_date.to_date %></td>
+      <%else%>
+        <td><%= circulate.back_date %></td>
+      <%end%>
 
-	<% if circulate.book_status_id == 0 %><td>损坏</td>
-	<%else%><td>完好</td>
-	<%end%>
+      <% if circulate.book_status_id == 0 %><td>损坏</td>
+      <%else%><td>完好</td>
+      <%end%>
 
-	<% if circulate.status_id == 0 %><td>已还</td>
-	<%else%><td>在借中</td>
-	<%end%>
+      <% if circulate.status_id == 0 %><td>已还</td>
+      <%else%><td>在借中</td>
+      <%end%>
 
-	<td>
-          <% if circulate.status_id == 0 %>
-	    流通关闭！
-	  <%else%>
-	    <%=link_to "还书", edit_circulate_path(:id=>circulate.id), :class=>"btn btn-primary" %>
-	  <%end%>
-	</td>
-      </tr>
-    <%end%>
+      <td>
+        <% if circulate.status_id == 0 %>
+          流通关闭！
+        <%else%>
+          <%=link_to "还书", edit_circulate_path(:id=>circulate.id), :class=>"btn btn-primary" %>
+        <%end%>
+      </td>
+    </tr>
+  <%end%>
   </table>
   <div class="table-actions-bottom" style="float:right">
     <%= paginate @circulates %>
   </div>
   <%= link_to "返回首页", mains_path, :class=>"btn btn-primary" %>
+  <%= link_to "统计", tongji_circulates_path, :class=>"btn btn-primary" %>
 </div>

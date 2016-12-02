@@ -32,4 +32,13 @@ class CirculatesController <ApplicationController
     @circulate.save
     redirect_to circulates_path
   end
+
+  def tongji
+    @books = Book.select('books.*, count(circulates.id) as count').joins(:circulates).group(:id)
+    @books = @books.joins(:tags).where("tags.name like ? ", "%#{params[:book_tag]}%") if params[:book_tag].present?
+  end
+
+  def usersTongji
+    @users = User.joins(:circulates).where("circulates.book_id=?", params[:book_id]).group(:id)
+  end
 end

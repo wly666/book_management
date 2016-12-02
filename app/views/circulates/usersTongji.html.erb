@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>借书人列表</h1>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th>借书人</th>
+    </tr>
+    <% @users.each do |user|%>
+      <tr>
+        <td><%= user.name %></td>
+      </tr>
+    <%end%>
+  </table>
+  <%= link_to "返回", tongji_circulates_path, :class=>"btn btn-primary" %>
+</div>
