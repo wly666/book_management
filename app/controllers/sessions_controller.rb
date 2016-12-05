@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by_phone_number(params[:phone_number])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to mains_path, notice: "Logged in!"
+      redirect_to books_path, notice: "Logged in!"
     else
       flash.now.alert = "手机号或密码不正确"
       render "new"
