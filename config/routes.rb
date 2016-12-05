@@ -22,4 +22,20 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   root to: "mains#index"
+
+  namespace :interface do
+    resources :books, :only =>[] do
+      collection do
+        get :all
+      end
+    end
+  end
+
+  namespace :interface do
+    resources :users, :only =>[] do
+      collection do
+        get :all
+      end
+    end
+  end
 end
