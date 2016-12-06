@@ -4,10 +4,12 @@ class CategoriesController <ApplicationController
   before_filter :authorize
 
   def index
+    authorize! :read, :message=>"没有权限"
     @categories = Category.all.page(params[:page]).per(10)
   end
 
   def new
+    authorize! :create, :message=>"没有权限"
     @category = Category.new
   end
 
@@ -17,6 +19,7 @@ class CategoriesController <ApplicationController
   end
 
   def edit
+    authorize! :update, :message=>"没有权限"
   end
 
   def update
@@ -26,6 +29,7 @@ class CategoriesController <ApplicationController
   end
 
   def destroy
+    authorize! :destroy, :message=>"没有权限"
     @category.delete
     redirect_to categories_path
   end

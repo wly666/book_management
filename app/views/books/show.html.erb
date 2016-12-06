@@ -26,7 +26,9 @@
     <%end%>
   </div><br/>
   -->
-  <% if current_user.role == "admin" %>
+  <% if current_user == nil %>
+    <%= link_to "借阅", new_circulate_path(:book_id=>@book.id), :class=>"btn btn-primary" %>
+  <% elsif current_user.role == "admin" %>
     <p style="color:red">您是管理员</p>
   <% elsif @book.status_id==0 %>
     <p style="color:red"> 该书目前正在维护中，不可借阅</p>

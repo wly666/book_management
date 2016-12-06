@@ -3,6 +3,7 @@ class CirculatesController <ApplicationController
   before_filter :authorize
 
   def index
+     authorize! :read, :message=>"没有权限"
     @circulates = Circulate.all.page(params[:page]).per(10)
   end
 
@@ -21,6 +22,7 @@ class CirculatesController <ApplicationController
   end
 
   def edit
+    authorize! :update, :message=>"没有权限"
     @circulate = Circulate.find(params[:id])
   end
 
@@ -34,6 +36,7 @@ class CirculatesController <ApplicationController
   end
 
   def tongji
+    authorize! :read, :message=>"没有权限"
     if params[:book_tag].present?
       @books = Book.joins(:tags).where("tags.name like ? ", "%#{params[:book_tag]}%")
       @books = @books.select('books.*, count(circulates.id) as count').joins(:circulates).group(:id)
@@ -43,6 +46,7 @@ class CirculatesController <ApplicationController
   end
 
   def usersTongji
+    authorize! :read, :message=>"没有权限"
     @users = User.joins(:circulates).where("circulates.book_id=?", params[:book_id]).group(:id)
   end
 end

@@ -1,7 +1,7 @@
 class BooksController <ApplicationController
 
   before_action :find_book_by_id, :only=>[:edit, :update, :destroy, :show]
-  before_filter :authorize
+  before_filter :authorize, :except=>[:index, :show]
 
   def index
     @books = Book.all.page(params[:page]).per(10)
@@ -12,6 +12,7 @@ class BooksController <ApplicationController
   end
 
   def new
+    authorize! :create, :message=>"没有权限"
     @book = Book.new
   end
 
@@ -34,6 +35,7 @@ class BooksController <ApplicationController
   end
 
   def edit
+    authorize! :update, :message=>"没有权限"
   end
 
   def update
@@ -50,6 +52,7 @@ class BooksController <ApplicationController
   end
 
   def destroy
+    authorize! :destroy, :message=>"没有权限"
     @book.delete
     redirect_to books_path
   end

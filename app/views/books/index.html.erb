@@ -1,4 +1,15 @@
 <div class="container">
+  <div style="margin-top:2%; margin-left:42%">
+    <div id="user_header">
+      <% if current_user %>
+        欢迎<%= current_user.name %>登陆！
+      <%= link_to "退出", logout_path %>
+    <% else %>
+        <%= link_to "注册", signup_path, :class=>"btn btn-primary" %>
+      <%= link_to "登陆", login_path, :class=>"btn btn-primary" %>
+    <% end %>
+    </div>
+  </div>
   <h1>图书列表</h1>
   <form method="get" class="form-inline">
     <div class="form-group">
@@ -26,7 +37,8 @@
       <th>图书作者</th>
       <th>图书分类</th>
       <th>图书标签</th>
-      <% if current_user.role == "admin"%>
+      <% if current_user == nil %>
+      <%elsif  current_user.role == "admin"%>
         <th>操作</th>
       <%else%>
       <%end%>
@@ -41,7 +53,8 @@
           <%= tag.name%>
         <%end%>
       </td>
-      <% if current_user.role == "admin"%>
+      <% if current_user == nil %>
+      <%elsif  current_user.role == "admin"%>
         <td>
           <%= link_to "修改", edit_book_path(:id=>book.id), :class=>"btn btn-primary" %>
           <%= link_to "删除", book_path(:id=>book.id), :method=>"delete", :data=>{:confirm=>"确认要删除吗？"}, :class=>"btn btn-danger" %>
@@ -54,7 +67,8 @@
   <div class="table-actions-bottom" style="float:right">
     <%= paginate @books %>
   </div>
-  <% if current_user.role == "admin"%>
+  <% if current_user == nil %>
+  <%elsif  current_user.role == "admin"%>
     <%= link_to "新增", new_book_path, :class=>"btn btn-primary" %>
     <%= link_to "返回首页", mains_path, :class=>"btn btn-primary" %>
   <%else%>

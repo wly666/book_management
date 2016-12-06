@@ -33,3 +33,7 @@ en:
       next: "下一页 &rsaquo;"
       previous: "&lsaquo; 上一页"
       truncate: "&hellip;"
+  unauthorized:
+    default: "默认错误信息文本"
+    manage:
+      all: "您没有权限访问，只有管理员可以使用"

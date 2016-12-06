@@ -4,10 +4,12 @@ class TagsController <ApplicationController
   before_filter :authorize
 
   def index
+    authorize! :read, :message=>"没有权限"
     @tags = Tag.all.page(params[:page]).per(10)
   end
 
   def new
+    authorize! :create, :message=>"没有权限"
     @tag = Tag.new
   end
 
@@ -17,6 +19,7 @@ class TagsController <ApplicationController
   end
 
   def edit
+    authorize! :update, :message=>"没有权限"
   end
 
   def update
@@ -26,6 +29,7 @@ class TagsController <ApplicationController
   end
 
   def destroy
+    authorize! :destroy, :message=>"没有权限"
     @tag.delete
     redirect_to tags_path
   end
