@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount RuCaptcha::Engine => "/rucaptcha"
+
   resources :books do
     collection do
       get :success
