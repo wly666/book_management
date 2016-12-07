@@ -20,3 +20,5 @@ gem 'log4r', '1.1.9'
 gem 'rucaptcha'
 
 gem 'dalli'
+
+gem 'seed_dump'
