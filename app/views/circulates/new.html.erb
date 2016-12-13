@@ -3,6 +3,17 @@
 <div class="container">
   <h1>借书信息</h1>
   <%= form_for @circulate do |f| %>
+    <% if @circulate.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@circulate.errors.count, "error") %>借书失败提示信息：</h2>
+
+        <ul>
+          <% @circulate.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <%= f.hidden_field :book_id, :value=>"#{params[:book_id]}"%>
     <%= f.hidden_field :user_id, :value=>"#{current_user.id}"%>
     <div class="input-group">

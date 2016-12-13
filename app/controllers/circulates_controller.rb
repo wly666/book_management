@@ -12,13 +12,17 @@ class CirculatesController <ApplicationController
   end
 
   def create
-    Circulate.create :book_id=>params[:circulate][:book_id],
+    @circulate = Circulate.create :book_id=>params[:circulate][:book_id],
       :user_id=>current_user.id,
       :borrow_date=>params[:circulate][:borrow_date],
       :expect_back_date=>params[:circulate][:expect_back_date],
       :book_status_id=>"1",
       :status_id=>"1"
-    redirect_to success_books_path
+    if @circulate.save
+      redirect_to books_path, notice:"借书成功！"
+    else
+      render :new
+    end
   end
 
   def edit
